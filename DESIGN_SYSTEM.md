@@ -104,3 +104,6 @@ Deve exibir:
 - Nome do usuário
 - Tipo de perfil
 - Botão "Sair"
+
+## Logotipo
+Utilize o logotipo disponível na pasta `assets`

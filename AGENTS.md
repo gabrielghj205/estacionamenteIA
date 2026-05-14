@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## Regras permanentes de interface
+
+- Todo texto visível da interface deve usar português do Brasil com acentuação correta.
+- Não deixar grafias sem acento como `veiculos`, `historico`, `patio`, `acoes`, `situacao`, `usuario`, `pagina` ou `proxima` quando forem texto exibido ao usuário.
+- Nomes técnicos, colunas do banco, variáveis, rotas, arquivos e atributos `data-*` podem permanecer sem acento.
+- A interface deve usar Heroicons nos menus, botões de ação e controles principais.
+- Em HTML, preferir `data-heroicon="nome-do-icone"` e renderizar pelo módulo `js/ui/icons.js`.
+- Em conteúdo gerado por JavaScript, usar a função `heroicon()` do módulo `js/ui/icons.js`.
+- Evitar símbolos soltos como `☰` ou `◐` quando houver ícone Heroicons equivalente.
+
 ## Visão geral do projeto
 
 Este projeto é um aplicação didática de controle de estacionamento.
@@ -124,3 +134,43 @@ O sistema deve utilizar a autenticação nativa do Supabase.
 ## Regras de Interface
 - Todas as mensagens de sucesso, erro, confirmação e alerta devem utilizar SweetAlert2.
 - Não utilizar `alert()`, `confirm()` ou `prompt()` nativos do JavaScript.
+
+## Supabase RLS e GRANT
+
+- Sempre que criar ou alterar tabelas protegidas por RLS no Supabase, tambem configurar os `GRANTs` necessarios para os papeis usados pelo front-end.
+- Para tabelas acessadas apos login, incluir pelo menos `grant usage on schema public to authenticated;` e o `grant` adequado na tabela (`select`, `insert`, `update`, ou `all`).
+- Nao considerar uma policy RLS suficiente por si so: o usuario precisa ter permissao SQL na tabela e a policy decide quais linhas ele pode acessar.
+- Se aparecer erro como `permission denied for table ...`, verificar primeiro se existem `GRANTs` para `authenticated`.
+
+Exemplos de Grants minimos do projeto:
+
+```sql
+grant usage on schema public to authenticated;
+grant select on public.perfis to authenticated;
+grant all on public.marcas to authenticated;
+```
+
+Se novas tabelas forem criadas, adicionar o `grant` correspondente e uma policy RLS adequada antes de usar no front-end.
+
+### Padrao obrigatorio para CRUDs
+
+Todos os cadastros administrativos devem ser implementados como CRUD completo:
+
+- Listar registros com paginacao.
+- Criar novos registros.
+- Editar registros existentes.
+- Inativar registros em vez de excluir fisicamente, quando a entidade possuir campo `ativo`.
+- Reativar registros inativos quando fizer sentido para o cadastro.
+- Validar campos obrigatorios antes de enviar ao Supabase.
+- Exibir mensagens de sucesso, erro, confirmacao e alerta com SweetAlert2.
+- Mostrar erros reais retornados pelo Supabase ao usuario, sem falhar silenciosamente.
+- Usar `async/await` e `try/catch` em todas as operacoes.
+- Atualizar a tabela/listagem apos criar, editar, inativar ou reativar.
+
+### Paginacao dos cadastros
+
+- Toda listagem de cadastro deve usar paginacao no Supabase com `.range(inicio, fim)`.
+- Usar `select(..., { count: 'exact' })` quando precisar calcular total de paginas.
+- Exibir controles de pagina anterior/proxima e informacao da pagina atual.
+- Definir um tamanho de pagina padrao, preferencialmente 10 registros por pagina.
+- Manter busca/filtros integrados com a paginacao quando existirem.

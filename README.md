@@ -101,6 +101,29 @@ Requisitos mínimos:
 - Garantir que os caminhos funcionem em ambiente estático.
 - Não depender de servidor próprio.
 
+### GitHub Pages
+
+Este projeto usa Vite. Por isso, não publique a raiz do repositório no GitHub Pages. A raiz contém os arquivos fonte e pode ficar parada em `Carregando...` no navegador. O Pages deve publicar somente o resultado de `npm run build`, que fica em `dist/`.
+
+Opção recomendada:
+
+1. No GitHub, acesse `Settings > Secrets and variables > Actions`.
+2. Cadastre os secrets `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY`.
+3. Acesse `Settings > Pages`.
+4. Em `Build and deployment`, escolha `Source: GitHub Actions`.
+5. Envie as alterações para a branch `main`.
+
+O workflow `.github/workflows/deploy-pages.yml` instala as dependências, gera a pasta `dist/` e publica o artefato correto no GitHub Pages.
+
+Opção manual:
+
+```bash
+npm ci
+npm run deploy
+```
+
+Depois, em `Settings > Pages`, use a branch `gh-pages` com a pasta `/root`.
+
 ## Observação para agentes de IA
 
 Qualquer agente de IA que trabalhe neste repositório deve tratar [AGENTS.md](AGENTS.md), [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) e [MEMORY.md](MEMORY.md) como fontes obrigatórias de contexto.

@@ -7,21 +7,21 @@ import { renderHeroicons } from '../ui/icons.js';
 aplicarTemaSalvo();
 renderHeroicons();
 
-document.querySelector('#formLogin').addEventListener('submit', async (evento) => {
-  evento.preventDefault();
-  const form = new FormData(evento.currentTarget);
-  const email = String(form.get('email') || '').trim();
-  const senha = String(form.get('senha') || '');
+document.querySelector('#formLogin').addEventListener('submit', async(evento) => {
+    evento.preventDefault();
+    const form = new FormData(evento.currentTarget);
+    const email = String(form.get('email') || '').trim();
+    const senha = String(form.get('senha') || '');
 
-  if (!email || !senha) {
-    await alertaAviso('Campos obrigatórios', 'Informe e-mail e senha para entrar.');
-    return;
-  }
+    if (!email || !senha) {
+        await alertaAviso('Campos obrigatórios', 'Informe e-mail e senha para entrar.');
+        return;
+    }
 
-  try {
-    await login(email, senha);
-    await redirecionarPorPerfil();
-  } catch (erro) {
-    await alertaErro('Erro ao entrar', erro);
-  }
+    try {
+        await login(email, senha);
+        await redirecionarPorPerfil();
+    } catch (erro) {
+        await alertaErro('Erro ao entrar', erro);
+    }
 });

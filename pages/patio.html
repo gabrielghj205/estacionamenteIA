@@ -1,5 +1,37 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pátio | Estacionamentos</title><script type="module" src="../js/pages/patio.js"></script></head>
-  <body><div id="app"><section class="app-card"><div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><label class="mb-1 block text-sm font-medium" for="buscaPlaca">Placa</label><input id="buscaPlaca" class="app-input" placeholder="Filtrar por placa"></div><button id="btnBuscar" class="app-button-primary" type="button"><span data-heroicon="magnifyingGlass"></span>Buscar</button></div><div class="overflow-x-auto"><table class="app-table"><thead><tr><th>Placa</th><th>Marca</th><th>Modelo</th><th>Cliente</th><th>Tipo</th><th>Entrada</th></tr></thead><tbody id="tabelaPatio"></tbody></table></div><div id="paginacao"></div></section></div></body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pátio | Estacionamentos</title>
+    <script type="module" src="../js/pages/patio.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <section class="app-card">
+            <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div><label class="mb-1 block text-sm font-medium" for="buscaPlaca">Placa</label><input id="buscaPlaca" class="app-input" placeholder="Filtrar por placa"></div><button id="btnBuscar" class="app-button-primary" type="button"><span data-heroicon="magnifyingGlass"></span>Buscar</button></div>
+            <div
+                class="overflow-x-auto">
+                <table class="app-table">
+                    <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Cliente</th>
+                            <th>Tipo</th>
+                            <th>Entrada</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaPatio"></tbody>
+                </table>
+    </div>
+    <div id="paginacao"></div>
+    </section>
+    </div>
+</body>
+
 </html>

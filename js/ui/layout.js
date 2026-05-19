@@ -3,51 +3,51 @@ import { alertaErro } from './alerts.js';
 import { heroicon, renderHeroicons } from './icons.js';
 
 const linksProprietario = [
-  ['dashboard.html', 'home', 'Dashboard'],
-  ['marcas.html', 'tag', 'Marcas'],
-  ['modelos.html', 'tag', 'Modelos'],
-  ['clientes.html', 'users', 'Clientes'],
-  ['veiculos.html', 'truck', 'Veículos'],
-  ['movimentacoes.html', 'plus', 'Movimentações'],
-  ['patio.html', 'clock', 'Pátio'],
-  ['historico.html', 'document', 'Histórico']
+    ['dashboard.html', 'home', 'Dashboard'],
+    ['marcas.html', 'tag', 'Marcas'],
+    ['modelos.html', 'tag', 'Modelos'],
+    ['clientes.html', 'users', 'Clientes'],
+    ['veiculos.html', 'truck', 'Veículos'],
+    ['movimentacoes.html', 'plus', 'Movimentações'],
+    ['patio.html', 'clock', 'Pátio'],
+    ['historico.html', 'document', 'Histórico']
 ];
 
 const linksCliente = [
-  ['dashboard-cliente.html', 'home', 'Dashboard'],
-  ['veiculos-cliente.html', 'truck', 'Meus veículos'],
-  ['historico-cliente.html', 'document', 'Meu histórico']
+    ['dashboard-cliente.html', 'home', 'Dashboard'],
+    ['veiculos-cliente.html', 'truck', 'Meus veículos'],
+    ['historico-cliente.html', 'document', 'Meu histórico']
 ];
 
 function alternarTema() {
-  const html = document.documentElement;
-  const escuro = html.classList.toggle('dark');
-  localStorage.setItem('tema', escuro ? 'dark' : 'light');
-  renderHeroicons();
+    const html = document.documentElement;
+    const escuro = html.classList.toggle('dark');
+    localStorage.setItem('tema', escuro ? 'dark' : 'light');
+    renderHeroicons();
 }
 
 export async function inicializarLayout({ area = 'proprietario', titulo = 'Estacionamento' } = {}) {
-  try {
-    await verificarAutenticacao();
-    const perfil = await getPerfilAtual();
+    try {
+        await verificarAutenticacao();
+        const perfil = await getPerfilAtual();
 
-    if (area === 'proprietario' && perfil.tipo_usuario !== 'proprietario') {
-      window.location.href = '../cliente/dashboard-cliente.html';
-      return null;
-    }
+        if (area === 'proprietario' && perfil.tipo_usuario !== 'proprietario') {
+            window.location.href = '../cliente/dashboard-cliente.html';
+            return null;
+        }
 
-    if (area === 'cliente' && perfil.tipo_usuario !== 'cliente') {
-      window.location.href = '../pages/dashboard.html';
-      return null;
-    }
+        if (area === 'cliente' && perfil.tipo_usuario !== 'cliente') {
+            window.location.href = '../pages/dashboard.html';
+            return null;
+        }
 
-    const app = document.querySelector('#app');
-    const conteudo = app.innerHTML;
-    const links = area === 'cliente' ? linksCliente : linksProprietario;
-    const prefixo = area === 'cliente' ? '' : '';
-    const paginaAtual = window.location.pathname.split('/').pop();
+        const app = document.querySelector('#app');
+        const conteudo = app.innerHTML;
+        const links = area === 'cliente' ? linksCliente : linksProprietario;
+        const prefixo = area === 'cliente' ? '' : '';
+        const paginaAtual = window.location.pathname.split('/').pop();
 
-    app.innerHTML = `
+        app.innerHTML = `
       <div class="min-h-screen lg:flex">
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 lg:block">
           <a href="${links[0][0]}" class="mb-8 flex items-center gap-3">

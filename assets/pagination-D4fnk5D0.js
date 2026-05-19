@@ -1,4 +1,4 @@
-import{h as n}from"./layout-EwC_OHfV.js";function c(e,t){const r=(e-1)*t;return{inicio:r,fim:r+t-1}}function i(e,t){return Math.max(1,Math.ceil((e||0)/t))}function l(e,{pagina:t,total:r,tamanhoPagina:o,aoMudar:a}){const s=i(r,o);e.innerHTML=`
+import{h as n}from"./layout-BAJKA9WQ.js";function c(e,t){const r=(e-1)*t;return{inicio:r,fim:r+t-1}}function i(e,t){return Math.max(1,Math.ceil((e||0)/t))}function l(e,{pagina:t,total:r,tamanhoPagina:o,aoMudar:a}){const s=i(r,o);e.innerHTML=`
     <div class="flex flex-col items-center justify-between gap-3 border-t border-slate-200 px-4 py-4 dark:border-slate-800 sm:flex-row">
       <p class="text-sm text-slate-600 dark:text-slate-300">Página ${t} de ${s} • ${r||0} registro(s)</p>
       <div class="flex gap-2">

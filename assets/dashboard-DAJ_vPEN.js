@@ -1,4 +1,4 @@
-import{s as u,b as h}from"./alerts-tQwHGxFb.js";import{a as p,i as b,h as f}from"./layout-EwC_OHfV.js";import{i as l,f as m,a as g,c as x}from"./formatters-BEJSvjhS.js";p();async function n(a,t,o,r,i=null){let e=u.from(a).select("id",{count:"exact",head:!0});e=i?e.gte(t,r).lte(t,i):e[o](t,r);const{count:s,error:c}=await e;if(c)throw c;return s||0}function d(a,t,o,r){return`
+import{s as u,b as h}from"./alerts-B41tt2c_.js";import{a as p,i as b,h as f}from"./layout-BAJKA9WQ.js";import{i as l,f as m,a as g,c as x}from"./formatters-BEJSvjhS.js";p();async function n(a,t,o,r,i=null){let e=u.from(a).select("id",{count:"exact",head:!0});e=i?e.gte(t,r).lte(t,i):e[o](t,r);const{count:s,error:c}=await e;if(c)throw c;return s||0}function d(a,t,o,r){return`
     <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div class="flex items-center justify-between">
         <p class="text-sm font-medium text-slate-600 dark:text-slate-300">${a}</p>

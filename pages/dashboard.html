@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Estacionamentos</title>
+    <script type="module" src="../js/pages/dashboard.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <section class="space-y-6">
+        <div id="cardsResumo" class="grid gap-4 md:grid-cols-2 xl:grid-cols-4"></div>
+        <div class="app-card">
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">Movimentações recentes</h2>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="app-table">
+              <thead><tr><th>Placa</th><th>Cliente</th><th>Entrada</th><th>Status</th></tr></thead>
+              <tbody id="tabelaRecentes"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
